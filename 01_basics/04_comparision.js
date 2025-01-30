@@ -18,7 +18,7 @@
 // console.log(undefined >= 0); //false
 // console.log(undefined < 0); //false
  // is tarah ke code nhi likhna chahiye kabhi bhi
-
+//Stricktly check
  
 // === strictly check with data types
  console.log("2" == 2); //true
