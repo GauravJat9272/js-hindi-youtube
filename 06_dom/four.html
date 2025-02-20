@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body style="background-color: #212121; color: white;">
+    <ul class="language">
+        <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li =document.createElement('li') //create element
+        li.innerHTML = `${langName}`  //innerHTML use karne se pure  dom tree ko traves karna padte hai
+        document.querySelector('.language').appendChild(li)   
+    }
+    addLanguage("python")
+    addLanguage("typescript")
+
+
+    //optimize way yaha pure tree ko traverse nhi karna hoga
+    //ese me hamesha appenChild ka use karna chahiye innerHtml ki jagay
+    function addOptilanguage(langName){
+        const li = document.createElement('li');
+        li.appendChild(document.createTextNode(langName))
+        document.querySelector('.language').appendChild(li)
+    } 
+    addOptilanguage('golang') 
+
+
+
+    //EDIT VALUES
+    const SecondLang = document.querySelector("li:nth-child(2)")
+    //oneWay
+    //SecondLang.innerHTML = "Mojo"
+    //SecondWay
+    const newli = document.createElement('li')
+    newli.textContent = "Mojo"
+    SecondLang.replaceWith(newli)
+
+    //edit
+    const firstLang = document.querySelector("li:first-child")
+    // firstLang.innerHTML = "typescript"
+    //ThirdWay
+    firstLang.outerHTML = '<li>TypeScript</li>'
+
+
+    //remove
+    const lastlang = document.querySelector('li:last-child')
+    lastlang.remove()
+</script>
+</html>
