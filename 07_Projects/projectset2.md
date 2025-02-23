@@ -32,7 +32,7 @@ HTML---->
       <form>
         <p><label>Height in CM: </label><input type="text" id="height" /></p>
         <p><label>Weight in KG: </label><input type="text" id="weight" /></p>
-        <button>Calculate</button>
+        <button type="submit">Calculate</button>
         <div id="results"></div>
         <div id="weight-guide">
           <h3>BMI Weight Guide</h3>
@@ -98,23 +98,25 @@ h1 {
 
 JAVASCRIPT --->
 
-const form = document.querySelector('form');
-form.addEventListener('sumbit', function (e) {
-  e.preventDefault();
-  const height = parseInt(document.querySelector('#height').value);
-  const weight = parseInt(document.querySelector('#weight').value);
 
-  const results = document.querySelector('#results');
+  <script>
+  const form = document.querySelector('form');
 
-  if (height === '' || height < 0 || isNaN(height)) {
-    results.innerHTML = `Please give a valid height ${height}`;
-  } else if (weight === '' || weight < 0 || isNaN(weight)) {
-    results.innerHTML = `Please give a valid Weight ${weight}`;
-  } else {
-    const bmi = (weight / ((height * height) / 10000)).toFixed(2);
-    //show the result
-    results.innerHTML = `<span>${bmi}</span>`;
-  }
-});
+  form.addEventListener('submit', function (e) { // Corrected 'sumbit' to 'submit'
+    e.preventDefault();
+    
+    const height = parseInt(document.querySelector('#height').value);
+    const weight = parseInt(document.querySelector('#weight').value);
+    const results = document.querySelector('#results');
 
+    if (!height || height < 0 || isNaN(height)) {
+      results.innerHTML = `Please enter a valid height`;
+    } else if (!weight || weight < 0 || isNaN(weight)) {
+      results.innerHTML = `Please enter a valid weight`;
+    } else {
+      const bmi = (weight / ((height * height) / 10000)).toFixed(2);
+      results.innerHTML = `Your BMI is <span>${bmi}</span>`;
+    }
+  });
+</script>
 
